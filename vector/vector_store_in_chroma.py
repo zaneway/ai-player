@@ -7,15 +7,17 @@ from langchain_chroma import Chroma
 from langchain_ollama import OllamaLLM
 
 embeddings = langchain_ollama.OllamaEmbeddings(
-    model="llama3.1:8b"  # 替换为你的 Ollama 服务 URL
+    model="deepseek-r1:14b"  # 替换为你的 Ollama 服务 URL
 )
 
 
-# 初始化 Chroma
-chroma = Chroma(collection_name="zaneway_demo", embedding_function=embeddings,persist_directory="zaneway" )
+# 初始化 Chroma,//,persist_directory="zaneway"
+chroma = Chroma(collection_name="zaneway_demo", embedding_function=embeddings )
 
 # 读取文本文件进行拆分
-loader = TextLoader("/Users/zhangzhenwei/Downloads/test.md")
+# loader = TextLoader("/Users/zhangzhenwei/Downloads/test.md")
+loader = TextLoader(
+    "/Users/zhangzhenwei/SynologyDrive/code-space/IdeaProjects/work/calogs/bjca_all_log_zhangzhenweideMacBook-Pro-2.local_Oct-16-000951-2024_Conflict.log")
 load = loader.load()
 
 text_splitter = MarkdownTextSplitter()

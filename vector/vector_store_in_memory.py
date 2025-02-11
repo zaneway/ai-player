@@ -7,12 +7,12 @@ from langchain.vectorstores import Chroma
 from langchain_ollama import OllamaLLM
 
 embeddings = langchain_ollama.OllamaEmbeddings(
-    model="llama3.1:8b"  # 替换为你的 Ollama 服务 URL
+    model="deepseek-r1:14b"  # 替换为你的 Ollama 服务 URL
 )
 
 vector_store = InMemoryVectorStore(embeddings)
 # 读取文本文件进行拆分
-loader = TextLoader("/Users/zhangzhenwei/Downloads/test.md")
+loader = TextLoader("/Users/zhangzhenwei/Downloads/readme.txt")
 load = loader.load()
 
 text_splitter = MarkdownTextSplitter()
@@ -46,7 +46,6 @@ prompt_template = """
 """
 # 填充 Prompt
 final_prompt = prompt_template.format(context=retrieved_content, question=query)
-
 
 
 # 调用 Ollama 模型
